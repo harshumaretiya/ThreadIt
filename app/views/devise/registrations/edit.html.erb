@@ -1,0 +1,42 @@
+<% content_for(:title, 'Edit Account') %>
+<%= render '/posts_shared/nav' %>
+<div class="col-lg-4 container shadow mt-5 pt-4 pl-3 pb-4 profile">
+  <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <div class="d-flex justify-content-between">
+      <div class="d-flex">
+        <%= link_to :back do %>
+          <i class="fas fa-times" style="font-size: 1.4rem"></i>
+        <% end %>
+        <h4 class="mb-3 ml-3">Edit Account</h4>
+      </div>
+      <div class="actions">
+        <%= f.submit "Save", class: "btn text-white rounded-pill bg-color" %>
+      </div>
+    </div>
+    <hr class="solid">
+
+    <div class="field">
+      <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "bg-light" %>
+    </div>
+
+    <div class="field">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <div class="field">
+      <%= f.password_field :password, autocomplete: "new-password", help: "leave blank if you don't want to change it" %>
+    </div>
+
+    <div class="field">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+
+    <div class="field">
+      <%= f.password_field :current_password, autocomplete: "current-password", help: "we need your current password to confirm your changes" %>
+    </div>
+  <% end %>
+</div>
